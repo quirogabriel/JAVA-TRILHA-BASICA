@@ -9,7 +9,6 @@ public class Exercicio_4 {
         Televisao tv = new Televisao();
 
         tv.setCanais("Globo", "SBT", "BAND", "Record");
-        System.out.println(tv.getCanais());
 
         ControleRemoto controle = new ControleRemoto(tv);
 
@@ -38,7 +37,7 @@ public class Exercicio_4 {
                     controle.diminuirCanal();
                     break;
                 case 5:
-                    System.out.print("Digite o numero do canal: ");
+                    controle.imprimir("Digite o numero do canal: ");
                     int canal = sc.nextInt();
                     controle.selecionarCanal(canal);
                     break;
@@ -46,11 +45,11 @@ public class Exercicio_4 {
                     controle.consultarInformaçõesDaTelevisão();
                     break;
                 case 7:
-                    System.out.println("\nDesligando controle");
+                    controle.imprimir("Desligando controle");
                     break;
 
                 default:
-                    System.out.println("Opcão inválida");
+                    controle.imprimir("Opcão inválida");
 
 
             }
