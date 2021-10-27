@@ -96,7 +96,7 @@ public class ControleRemoto {
         imprimir(this.televisao.toString());
     }
 
-    private void imprimir(String frase) {
+    public void imprimir(String frase) {
         System.out.println("\n" + frase + "\n");
     }
 }
