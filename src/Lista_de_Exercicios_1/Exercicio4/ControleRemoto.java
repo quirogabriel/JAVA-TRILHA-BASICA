@@ -1,6 +1,6 @@
 package Lista_de_Exercicios_1.Exercicio4;
 
-public class ControleRemoto {
+public class ControleRemoto implements ControleRemotoFuncoes {
 
     private Televisao televisao;
 
@@ -9,6 +9,7 @@ public class ControleRemoto {
     }
 
     //Diminui o volume de 1 em 1
+    @Override
     public void diminuirVolume() throws Exception {
         try {
             if (this.televisao.getVolume() > 0) {
@@ -24,6 +25,7 @@ public class ControleRemoto {
     }
 
     //Aumenta o volume de 1 em 1
+    @Override
     public void aumentarVolume() throws Exception {
         try {
             if (this.televisao.getVolume() < 10) {
@@ -38,6 +40,7 @@ public class ControleRemoto {
     }
 
     //Aumenta os canais de 1 em 1
+    @Override
     public void aumentarCanal() throws Exception {
         try {
             //Verificar se há canais na televisão
@@ -60,6 +63,7 @@ public class ControleRemoto {
     }
 
     //Diminui a quantidade de canais de 1 em 1
+    @Override
     public void diminuirCanal() throws Exception {
         //Verificar se há canais na televisão
         try {
@@ -82,6 +86,7 @@ public class ControleRemoto {
     }
 
     //Seleciona um canal específico
+    @Override
     public void selecionarCanal(int numeroDoCanal) {
         try {
             this.televisao.setNumeroCanal(numeroDoCanal);
@@ -92,6 +97,7 @@ public class ControleRemoto {
     }
 
     //Consulta todas as informações da TV
+    @Override
     public void consultarInformaçõesDaTelevisão() {
         imprimir(this.televisao.toString());
     }
