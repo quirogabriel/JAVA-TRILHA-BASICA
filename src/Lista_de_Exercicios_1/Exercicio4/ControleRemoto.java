@@ -1,16 +1,19 @@
 package Lista_de_Exercicios_1.Exercicio4;
 
+import java.util.Scanner;
+
 public class ControleRemoto implements ControleRemotoFuncoes {
 
     private Televisao televisao;
 
     public ControleRemoto(Televisao televisao) {
         this.televisao = televisao;
+        ligar();
     }
 
     //Diminui o volume de 1 em 1
     @Override
-    public void diminuirVolume() throws Exception {
+    public void diminuirVolume() {
         try {
             if (this.televisao.getVolume() > 0) {
                     this.televisao.setVolume(this.televisao.getVolume() - 1);
@@ -26,7 +29,7 @@ public class ControleRemoto implements ControleRemotoFuncoes {
 
     //Aumenta o volume de 1 em 1
     @Override
-    public void aumentarVolume() throws Exception {
+    public void aumentarVolume() {
         try {
             if (this.televisao.getVolume() < 10) {
                 this.televisao.setVolume(this.televisao.getVolume() + 1);
@@ -41,7 +44,7 @@ public class ControleRemoto implements ControleRemotoFuncoes {
 
     //Aumenta os canais de 1 em 1
     @Override
-    public void aumentarCanal() throws Exception {
+    public void aumentarCanal() {
         try {
             //Verificar se há canais na televisão
             if (this.televisao.getCanais().size() >= 0) {
@@ -64,7 +67,7 @@ public class ControleRemoto implements ControleRemotoFuncoes {
 
     //Diminui a quantidade de canais de 1 em 1
     @Override
-    public void diminuirCanal() throws Exception {
+    public void diminuirCanal() {
         //Verificar se há canais na televisão
         try {
             if (this.televisao.getCanais().size() >= 0) {
@@ -104,5 +107,50 @@ public class ControleRemoto implements ControleRemotoFuncoes {
 
     public void imprimir(String frase) {
         System.out.println("\n" + frase + "\n");
+    }
+
+    public void ligar() {
+        Scanner sc = new Scanner(System.in);
+        int  opcao = 0;
+
+        do {
+            System.out.print(String.format("%38s\n\n%-30s%s\n%-30s%s\n%-30s%s\n%-30s\n\n%s", "Menu do Controle Remoto", "1 - Aumentar volume", "2 - Diminuir volume",
+                    "3 - Aumentar canal", "4 - Diminuir canal", "5 - Selecionar canal", "6 - Consultar informações da TV",
+                    "7 - Encerrar", "Selecionar opção: "));
+
+            opcao = sc.nextInt();
+
+            switch (opcao) {
+
+                case 1:
+                   aumentarVolume();
+                    break;
+                case 2:
+                    diminuirVolume();
+                    break;
+                case 3:
+                    aumentarCanal();
+                    break;
+                case 4:
+                    diminuirCanal();
+                    break;
+                case 5:
+                    imprimir("Digite o numero do canal: ");
+                    int canal = sc.nextInt();
+                    selecionarCanal(canal);
+                    break;
+                case 6:
+                    consultarInformaçõesDaTelevisão();
+                    break;
+                case 7:
+                    imprimir("Desligando controle");
+                    break;
+
+                default:
+                    imprimir("Opcão inválida");
+
+
+            }
+        } while (opcao != 7);
     }
 }
