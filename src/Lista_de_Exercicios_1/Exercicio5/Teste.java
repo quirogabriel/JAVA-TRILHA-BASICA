@@ -7,19 +7,7 @@ import java.util.stream.Collectors;
 
 public class Teste {
     public static void main(String[] args) {
-        List<Integer> pluvi = new ArrayList<>();
-        pluvi.add(10);
-        pluvi.add(11);
-        pluvi.add(9);
+        SelecionaCaminhao.selecionaCaminhao();
 
-        Caminhao caminhao = new Caminhao(pluvi, TipoCaminhao.ALFA);
-        Caminhao caminhao2 = new Caminhao(pluvi, TipoCaminhao.BETA);
-
-        System.out.println(caminhao.getSoma());
-        System.out.println(caminhao2.getSoma());
-
-        Collections.sort(pluvi);
-
-        System.out.println(pluvi);
     }
 }

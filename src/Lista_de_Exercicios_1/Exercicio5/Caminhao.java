@@ -1,5 +1,6 @@
 package Lista_de_Exercicios_1.Exercicio5;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Caminhao {
@@ -7,10 +8,12 @@ public class Caminhao {
     private List<Integer> pluviomentros;
     private TipoCaminhao tipo;
     private int soma = 0;
+    private int tamanho;
 
-    public Caminhao(List<Integer> lista, TipoCaminhao tipo) {
+    public Caminhao(List<Integer> lista, TipoCaminhao tipo, int tamanho) {
         this.pluviomentros = lista;
         this.tipo = tipo;
+        this.tamanho = tamanho;
         somaPluviometros(this.pluviomentros);
     }
 
