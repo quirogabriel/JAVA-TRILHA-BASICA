@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Caminhao {
 
-    private List<Integer> pluviomentros;
+    private List<Pluviometros> pluviomentros;
     private TipoCaminhao tipo;
     private int soma = 0;
     private int tamanho;
 
-    public Caminhao(List<Integer> lista, TipoCaminhao tipo, int tamanho) {
+    public Caminhao(List<Pluviometros> lista, TipoCaminhao tipo, int tamanho) {
         this.pluviomentros = lista;
         this.tipo = tipo;
         this.tamanho = tamanho;
         somaPluviometros(this.pluviomentros);
     }
 
-    public List<Integer> getPluviomentros() {
+    public List<Pluviometros> getPluviomentros() {
         return pluviomentros;
     }
 
-    public void setPluviomentros(List<Integer> pluviomentros) {
+    public void setPluviomentros(List<Pluviometros> pluviomentros) {
         this.pluviomentros = pluviomentros;
     }
 
@@ -37,7 +37,7 @@ public class Caminhao {
         return this.soma;
     }
 
-    public void somaPluviometros(List<Integer> lista) {
-        this.pluviomentros.forEach(a -> soma += a);
+    public void somaPluviometros(List<Pluviometros> lista) {
+        this.pluviomentros.forEach(a -> soma += a.getTamanho());
     }
 }
