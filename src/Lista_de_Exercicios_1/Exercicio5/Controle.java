@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 public class Controle {
 
-    public static String leString(Scanner sc) {
+    public static String leString() {
+        Scanner sc = new Scanner(System.in);
         return sc.next();
     }
 
-    public static int leInteiro(Scanner sc) {
+    public static int leInteiro() {
+        Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 }

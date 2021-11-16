@@ -26,7 +26,7 @@ public class SelecionaCaminhao extends Controle {
 
             imprimir("Deseja parar de executar o programa?\nSe sim, digite 'Fim'...\n");
         }
-        while (!leString(new Scanner(System.in)).equalsIgnoreCase("Fim"));
+        while (!leString().equalsIgnoreCase("Fim"));
     }
 
     private static void imprimeDadosMaisApto(List<Caminhao> caminhoes) {
@@ -41,7 +41,7 @@ public class SelecionaCaminhao extends Controle {
 
         for (int i = 0; i < tamanho; i++) {
             imprimir((i+1) + "º pluviometro: ");
-            String x = leString(new Scanner(System.in));
+            String x = leString();
 
             Pluviometros pluviomentro = new Pluviometros();
             TipoPluviometro tipo = null;
@@ -55,13 +55,13 @@ public class SelecionaCaminhao extends Controle {
 
     private static int setTamanhoListaPluviometros() {
         imprimir("Digite o numero de pluviometros a serem transportados: ");
-        int tamanho = leInteiro(new Scanner(System.in));
+        int tamanho = leInteiro();
         return tamanho;
     }
 
     private static TipoCaminhao setTipoCaminhao() {
         imprimir("Digite o tipo do caminhao (Alfa/Beta): ");
-        String tipo = leString(new Scanner(System.in));
+        String tipo = leString();
         TipoCaminhao tipoCaminhao = null;
 
         tipoCaminhao = verificaTipoCaminhao(tipo, tipoCaminhao);
@@ -71,7 +71,7 @@ public class SelecionaCaminhao extends Controle {
     private static TipoCaminhao verificaTipoCaminhao(String tipo, TipoCaminhao tipoCaminhao) {
         while(!tipo.equalsIgnoreCase("Alfa") && !tipo.equalsIgnoreCase("Beta")) {
             imprimir("Tipo inválido, digite um tipo válido (Alfa/Beta): ");
-            tipo = leString(new Scanner(System.in));
+            tipo = leString();
         }
         if (tipo.equalsIgnoreCase("Alfa"))
             tipoCaminhao = TipoCaminhao.ALFA;
@@ -83,7 +83,7 @@ public class SelecionaCaminhao extends Controle {
     private static TipoPluviometro verificaTipoPluviometro(String x, TipoPluviometro tipo) {
         while (!x.equalsIgnoreCase("P") && !x.equalsIgnoreCase("M") && !x.equalsIgnoreCase("G")) {
             imprimir("Tipo inválido, digite um tipo válido (P/M/G): ");
-            x = leString(new Scanner(System.in));
+            x = leString();
         }
         if (x.equalsIgnoreCase("P"))
             tipo = TipoPluviometro.P;
