@@ -19,29 +19,36 @@ public class SelecionaCaminhao extends Controle {
         do {
             TipoCaminhao tipoCaminhao = setTipoCaminhao();
             int tamanho = setTamanhoListaPluviometros();
-            List<Integer> pluviometros = setValorPluviometros(tamanho);
+            List<Pluviometros> pluviometros = setValorPluviometros(tamanho);
 
             Caminhao caminhao = new Caminhao(pluviometros, tipoCaminhao, tamanho);
             caminhoes.add(caminhao);
 
-            imprimir("Deseja parar de executar o programa?\nSe sim, digite 'Fim'.");
+            imprimir("Deseja parar de executar o programa?\nSe sim, digite 'Fim'...\n");
         }
-        while (leString(new Scanner(System.in)).compareTo("Fim") != 0);
+        while (!leString(new Scanner(System.in)).equalsIgnoreCase("Fim"));
     }
 
     private static void imprimeDadosMaisApto(List<Caminhao> caminhoes) {
-        imprimir("\nDados do caminhão mais apto\n");
-        imprimir("Tipo do caminhão: " + caminhoes.get(caminhoes.size() - 1).getTipo().getDescricao());
-        imprimir("Lista de pluviômetroos transportados no caminhão: " + caminhoes.get(caminhoes.size() - 1).getPluviomentros());
+        imprimir("\nDados do caminhão mais apto\n\n");
+        imprimir("Tipo do caminhão: " + caminhoes.get(caminhoes.size() - 1).getTipo().getDescricao() + "\n");
+        imprimir("Lista de pluviômetros transportados no caminhão: " + caminhoes.get(caminhoes.size() - 1).getPluviomentros().toString());
     }
 
-    private static List<Integer> setValorPluviometros(int tamanho) {
-        List<Integer> pluviometros = new ArrayList<>(tamanho);
+    private static List<Pluviometros> setValorPluviometros(int tamanho) {
+        List<Pluviometros> pluviometros = new ArrayList<>(tamanho);
+        imprimir("Digite o tipo de cada pluviometro da lista (P/M/G): " + "\n");
 
-        imprimir("Digite o tamanho de cada pluviomentro da lista: ");
         for (int i = 0; i < tamanho; i++) {
-            int x = leInteiro(new Scanner(System.in));
-            pluviometros.add(x);
+            imprimir((i+1) + "º pluviometro: ");
+            String x = leString(new Scanner(System.in));
+
+            Pluviometros pluviomentro = new Pluviometros();
+            TipoPluviometro tipo = null;
+
+            tipo = verificaTipoPluviometro(x, tipo);
+            pluviomentro.setTipo(tipo);
+            pluviometros.add(pluviomentro);
         }
         return pluviometros;
     }
@@ -53,10 +60,19 @@ public class SelecionaCaminhao extends Controle {
     }
 
     private static TipoCaminhao setTipoCaminhao() {
-        imprimir("Digite o tipo do caminhao(Alfa/Beta): ");
+        imprimir("Digite o tipo do caminhao (Alfa/Beta): ");
         String tipo = leString(new Scanner(System.in));
         TipoCaminhao tipoCaminhao = null;
 
+        tipoCaminhao = verificaTipoCaminhao(tipo, tipoCaminhao);
+        return tipoCaminhao;
+    }
+
+    private static TipoCaminhao verificaTipoCaminhao(String tipo, TipoCaminhao tipoCaminhao) {
+        while(!tipo.equalsIgnoreCase("Alfa") && !tipo.equalsIgnoreCase("Beta")) {
+            imprimir("Tipo inválido, digite um tipo válido (Alfa/Beta): ");
+            tipo = leString(new Scanner(System.in));
+        }
         if (tipo.equalsIgnoreCase("Alfa"))
             tipoCaminhao = TipoCaminhao.ALFA;
         if (tipo.equalsIgnoreCase("Beta"))
@@ -64,8 +80,23 @@ public class SelecionaCaminhao extends Controle {
         return tipoCaminhao;
     }
 
+    private static TipoPluviometro verificaTipoPluviometro(String x, TipoPluviometro tipo) {
+        while (!x.equalsIgnoreCase("P") && !x.equalsIgnoreCase("M") && !x.equalsIgnoreCase("G")) {
+            imprimir("Tipo inválido, digite um tipo válido (P/M/G): ");
+            x = leString(new Scanner(System.in));
+        }
+        if (x.equalsIgnoreCase("P"))
+            tipo = TipoPluviometro.P;
+        if (x.equalsIgnoreCase("M"))
+            tipo = TipoPluviometro.M;
+        if (x.equalsIgnoreCase("G"))
+            tipo = TipoPluviometro.G;
+        return tipo;
+    }
+
     private static void imprimir(String s) {
-        System.out.println(s);
+        System.out.print(s);
     }
 
 }
+
